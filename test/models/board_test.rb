@@ -11,7 +11,7 @@ class BoardTest < ActiveSupport::TestCase
     assert_equal 1, @board.cards.length
   end
 
-  test 'last_change is depends on card modification' do
+  test 'last_change depends on card modification' do
     ActiveRecord::Base.record_timestamps = false
     @board.updated_at = '2017-01-01 12:00:00'
     @board.save!
@@ -22,7 +22,7 @@ class BoardTest < ActiveSupport::TestCase
     assert_equal @card.updated_at, @board.last_change
   end
 
-  test 'last_change is depends on board' do
+  test 'last_change depends on board' do
     ActiveRecord::Base.record_timestamps = false
     @board.updated_at = '2017-01-01 14:00:00'
     @board.save!
@@ -30,6 +30,11 @@ class BoardTest < ActiveSupport::TestCase
     @card.save!
     ActiveRecord::Base.record_timestamps = true
 
+    assert_equal @board.updated_at, @board.last_change
+  end
+
+  test 'last_change depends only on board if there are no cards' do
+    @board.cards = []
     assert_equal @board.updated_at, @board.last_change
   end
 end
