@@ -4,10 +4,11 @@
 
   <% @boards.each do |board| %>
 
-    <li class="list-group-item list-group-item-action">
-      <h5 class="list-group-item-heading">
-        <span class="tag tag-default tag-pill float-xs-right"><%= board.cards.length %></span>
-        <%= link_to board.title, board_path( board )%></h5>
+    <li class="list-group-item align-items-center">
+      <h5 class="list-group-item-heading d-flex  justify-content-between">
+        <%= link_to board.title, board_path( board )%>
+        <span class="badge badge-pill badge-primary"><%= board.cards.length %></span>
+      </h5>
       <p class="list-group-item-text">Last Modified <%= time_ago_in_words board.last_change %> ago.</p>
       <p class="list-group-item-text">
         <%= link_to 'Edit Board Settings', edit_board_path(board) %>, 
