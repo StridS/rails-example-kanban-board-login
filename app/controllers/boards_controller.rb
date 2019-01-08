@@ -1,6 +1,6 @@
 # Controller for Kanban Boards
 class BoardsController < ApplicationController
-  before_action :set_board, only: [:show, :edit, :update, :destroy]
+  before_action :set_board, only: %i[show edit update destroy]
 
   # GET /boards
   # GET /boards.json
@@ -10,8 +10,7 @@ class BoardsController < ApplicationController
 
   # GET /boards/1
   # GET /boards/1.json
-  def show
-  end
+  def show; end
 
   # GET /boards/new
   def new
@@ -19,8 +18,7 @@ class BoardsController < ApplicationController
   end
 
   # GET /boards/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /boards
   # POST /boards.json
