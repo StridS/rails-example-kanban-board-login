@@ -12,16 +12,31 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-light mb-1" style="background-color: #e3f2fd;">
-      <a class="navbar-brand" href="/">
-        <%= image_tag('logo.svg', size: "30x30", alt: "Kanban Boards", class: 'd-inline-block') %>
-        Kanban Boards
-      </a>
-      
-      <span class="navbar-text float-xs-right">
-        No Login   
-      </span>
-    </nav>    
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#"> <%= image_tag('logo.svg', size: "30x30", alt: "Kanban Boards", class: 'd-inline-block') %>
+        Kanban Boards</a>
+
+
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <span class="navbar-text mr-1">
+            Four Demo Apps for Login: 
+        </span>
+        <div class="navbar-nav">
+            <a class="nav-link"
+               href="https://kanban-1.herokuapp.com/">1: No Login
+               <span class="sr-only">(current)</span></a>
+            <a class="nav-link"
+               href="https://kanban-2.herokuapp.com/">2: basic auth</a>
+            <a class="nav-link"
+               href="https://kanban-3.herokuapp.com/">3: devise</a>
+            <a class="nav-link"
+               href="https://kanban-4.herokuapp.com/">4: omniauth</a>
+        </div>
+      </div>
+      <span class="navbar-text">
+        No Login
+       </span>
+    </nav>   
     <div class="container">
       <% flash.each do |key, value| %>
           <div class="alert alert-info mt-1"><strong><%= key %>:</strong> <%= value %></div>
