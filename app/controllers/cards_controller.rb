@@ -40,9 +40,13 @@ class CardsController < ApplicationController
   def update
     respond_to do |format|
       if @card.update(card_params)
+        Rails.logger.warn('update sucessfull')
         format.html { redirect_to board_path(@card.board), notice: 'Card was successfully updated.' }
         format.json { render :show, status: :ok, location: @card }
       else
+        Rails.logger.warn('update NOT sucessfull because')
+        Rails.logger.warn(@card.errors.full_messages)
+
         format.html { render :edit }
         format.json { render json: @card.errors, status: :unprocessable_entity }
       end

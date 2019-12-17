@@ -7,8 +7,8 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <%= csrf_meta_tags %>
     
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
@@ -34,7 +34,6 @@
         <p>This Demo App offers no Login. But a session-cookie <kbd><%=
         Rails.application.config.session_options[:key] %></kbd> is still created
           by rails and set for each visitor.</p>
-        <p>You can find the source code in <a href="https://github.com/backend-development/rails-example-kanban-board-login/tree/master">the master branch</a> of <a href="https://github.com/backend-development/rails-example-kanban-board-login">the repository</a>.</p>
       </div>
     </footer>
   </body>
