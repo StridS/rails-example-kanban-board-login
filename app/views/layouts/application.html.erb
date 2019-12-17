@@ -49,6 +49,10 @@
         <p>This Demo App offers no Login. But a session-cookie <kbd><%=
         Rails.application.config.session_options[:key] %></kbd> is still created
           by rails and set for each visitor.</p>
+
+          <p>
+            you have made <%= session[:counter] %> requests
+  in session <%= session.id %></p>
       </div>
     </footer>
   </body>
