@@ -1,8 +1,9 @@
 require 'test_helper'
 
-class BoardsControllerTest < ActionDispatch::IntegrationTest
+class BoardsControllerLoggedInTest < ActionDispatch::IntegrationTest
   setup do
     @board = boards(:one)
+    sign_in_as(users(:one).username)
   end
 
   test "should get index" do
@@ -45,4 +46,5 @@ class BoardsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to boards_url
   end
+
 end

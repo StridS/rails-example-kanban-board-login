@@ -1,30 +1,22 @@
 require 'test_helper'
 
-class CardsControllerTest < ActionDispatch::IntegrationTest
+
+class CardsControllerLoggedInTest < ActionDispatch::IntegrationTest
   setup do
     @card = cards(:one)
-  end
-
-  test "should get index" do
-    get board_cards_url(boards(:one))
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_board_card_path(boards(:one))
-    assert_response :success
+    sign_in_as(users(:one).username)
   end
 
   test "should create card" do
     assert_difference('Card.count') do
-      post board_cards_url(boards(:one)), params: { card: { description: @card.description, status: @card.status, title: @card.title } }
+      post board_cards_url(@card.board), params: { card: { description: @card.description, status: @card.status, title: @card.title } }
     end
 
-    assert_redirected_to board_url(boards(:one))
+    assert_redirected_to board_url(@card.board)
   end
 
   test "should show card" do
-    get board_cards_url(@card.board, @card)
+    get board_cards_url(@card.board)
     assert_response :success
   end
 
@@ -46,4 +38,5 @@ class CardsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to board_cards_url(board)
   end
-end
+end    
+

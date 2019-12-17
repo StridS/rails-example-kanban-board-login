@@ -19,16 +19,18 @@
       <div class="card-body">
         <h4 class="card-title"><%= card.title %></h4>
         <p class="card-text"><%= card.description %></p>
-        <div class="card-text">
-          <%= render 'button_to_prev_status', card: card %>
-          <%= link_to 'Edit', edit_card_path(card) %>
-          <%= render 'button_to_next_status', card: card %>
-        </div>
+        <% if current_user %>
+          <div class="card-text">
+            <%= render 'button_to_prev_status', card: card %>
+            <%= link_to 'Edit', edit_card_path(card) %>
+            <%= render 'button_to_next_status', card: card %>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>
 
-    <% if status == Card.valid_status.first %>
+    <% if status == Card.valid_status.first && current_user %>
       <div class="card mb-3">
         <div class="card-body">
           <h4 class="card-title">New Card</h4>

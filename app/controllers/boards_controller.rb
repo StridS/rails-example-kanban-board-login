@@ -1,5 +1,6 @@
 # Controller for Kanban Boards
 class BoardsController < ApplicationController
+  before_action :authenticate_user!, only: %i[new edit create update destroy]
   before_action :set_board, only: %i[show edit update destroy]
 
   # GET /boards
@@ -70,4 +71,6 @@ class BoardsController < ApplicationController
   def board_params
     params.require(:board).permit(:title)
   end
+
+
 end

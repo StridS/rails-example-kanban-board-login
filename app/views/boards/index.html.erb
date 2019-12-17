@@ -10,10 +10,13 @@
         <span class="badge badge-pill badge-primary"><%= board.cards.length %></span>
       </h5>
       <p class="list-group-item-text">Last Modified <%= time_ago_in_words board.last_change %> ago.</p>
-      <p class="list-group-item-text">
-        <%= link_to 'Edit Board Settings', edit_board_path(board) %>, 
-        <%= link_to 'Delete Board', board, method: :delete, data: { confirm: 'Are you sure?' } %>
-      </p>
+
+      <% if current_user %>
+        <p class="list-group-item-text">
+          <%= link_to 'Edit Board Settings', edit_board_path(board) %>, 
+          <%= link_to 'Delete Board', board, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </p>
+      <% end %>
     </li>
   <% end %>
   <li class="list-group-item list-group-item-action">

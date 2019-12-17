@@ -34,7 +34,12 @@
         </div>
       </div>
       <span class="navbar-text">
-        No Login
+        <% if current_user %>
+          Logged in as <%= current_user.username %>
+          <%= link_to "log out", logout_path %>
+        <% else %>
+          <%= link_to "log in", login_path %>
+        <% end %>
        </span>
     </nav>   
     <div class="container">
@@ -46,9 +51,12 @@
     </div>
     <footer class="bd-footer text-muted">
       <div class="container">
-        <p>This Demo App offers no Login. But a session-cookie <kbd><%=
-        Rails.application.config.session_options[:key] %></kbd> is still created
-          by rails and set for each visitor.</p>
+        <p>This Demo App offers basic authentication with <kbd>has_secure_password</kbd> in the
+          user model, and a session controller for login and logout. The id of the current
+          user is stored in the session. Rails uses the session-cookie <kbd><%=
+        Rails.application.config.session_options[:key] %></kbd> automatically.</p>
+        <p>Try logging in as user <kbd>mariam</kbd> with password <kbd>badpassword123</kbd>.</p>
+        
       </div>
     </footer>
   </body>

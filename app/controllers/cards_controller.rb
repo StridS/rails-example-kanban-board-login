@@ -1,4 +1,6 @@
 class CardsController < ApplicationController
+  before_action :authenticate_user!, only: %i[new edit create update destroy]
+
   before_action :set_board
   before_action :set_card, only: %i[show edit update destroy]
 

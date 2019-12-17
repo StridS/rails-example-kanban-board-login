@@ -11,3 +11,14 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+
+module SignInHelper
+  def sign_in_as(username)
+    post login_url, params:  {username: username, password: 'asecret'}
+  end
+end
+ 
+class ActionDispatch::IntegrationTest
+  include SignInHelper
+end
