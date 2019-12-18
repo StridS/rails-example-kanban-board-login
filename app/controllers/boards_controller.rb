@@ -1,6 +1,8 @@
 # Controller for Kanban Boards
 class BoardsController < ApplicationController
   before_action :set_board, only: %i[show edit update destroy]
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
+
 
   # GET /boards
   # GET /boards.json

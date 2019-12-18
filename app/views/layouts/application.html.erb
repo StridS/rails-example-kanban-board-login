@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Kanban Board - no login</title>
+    <title>Kanban Board - 3: devise</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <%= csrf_meta_tags %>
@@ -12,31 +12,40 @@
   </head>
 
   <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#"> <%= image_tag('logo.svg', size: "30x30", alt: "Kanban Boards", class: 'd-inline-block') %>
-        Kanban Boards</a>
-
-
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <span class="navbar-text mr-1">
-            Four Demo Apps for Login: 
-        </span>
-        <div class="navbar-nav">
-            <a class="nav-link"
-               href="https://kanban-1.herokuapp.com/">1: No Login
-               <span class="sr-only">(current)</span></a>
-            <a class="nav-link"
-               href="https://kanban-2.herokuapp.com/">2: basic auth</a>
-            <a class="nav-link"
-               href="https://kanban-3.herokuapp.com/">3: devise</a>
-            <a class="nav-link"
-               href="https://kanban-4.herokuapp.com/">4: omniauth</a>
-        </div>
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+     <a class="navbar-brand" href="#"> <%= image_tag('logo.svg', size: "30x30", alt: "Kanban Boards", class: 'd-inline-block') %>
+       Kanban Boards</a>
+     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <span class="navbar-text mr-1">
+        Four Demo Apps for Login: 
+      </span>
+      <div class="navbar-nav">
+          <a class="nav-link"
+            href="https://kanban-1.herokuapp.com/">1: No Login
+            </a>
+          <a class="nav-link"
+            href="https://kanban-2.herokuapp.com/">2: basic auth</a>
+          <a class="nav-link"
+            href="https://kanban-3.herokuapp.com/">3: devise
+            <span class="sr-only">(current)</span></a>
+          <a class="nav-link"
+            href="https://kanban-4.herokuapp.com/">4: omniauth</a>
+      </div>
       </div>
       <span class="navbar-text">
-        No Login
-       </span>
-    </nav>   
+      <% if current_user.nil? %>
+        <%= link_to 'login', new_user_session_path %>
+          |
+        <%= link_to "register", new_user_registration_path %>
+      <% else %>
+        <%= link_to "logout #{current_user.email}", destroy_user_session_path, method: :delete %>
+      <% end %>
+      | <%= link_to "see e-mails",  letter_opener_web_path %>
+      </span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>    
     <div class="container">
       <% flash.each do |key, value| %>
           <div class="alert alert-info mt-1"><strong><%= key %>:</strong> <%= value %></div>
@@ -46,9 +55,16 @@
     </div>
     <footer class="bd-footer text-muted">
       <div class="container">
-        <p>This Demo App offers no Login. But a session-cookie <kbd><%=
-        Rails.application.config.session_options[:key] %></kbd> is still created
-          by rails and set for each visitor.</p>
+        <p>This Demo App uses the gem <kbd>devise</kbd> to implement Login. Devise
+          can handle registration, confirmation via e-mail, handling forgotten passwords
+          and much more for you. In this demo app you can
+          <%= link_to "see all the e-mails",  letter_opener_web_path %>devise sends.</p>
+
+        <p>Try logging in as user <kbd>mariam@example.com</kbd> with password <kbd>badpassword123</kbd>,
+          or register your own user.</p>
+
+          <p>For establishing a session we are still using the rails session-cookie <kbd><%=
+        Rails.application.config.session_options[:key] %></kbd>.</p>
       </div>
     </footer>
   </body>

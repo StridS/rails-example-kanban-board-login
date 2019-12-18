@@ -1,6 +1,7 @@
 class CardsController < ApplicationController
   before_action :set_board
   before_action :set_card, only: %i[show edit update destroy]
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
 
   # GET /cards
   # GET /cards.json

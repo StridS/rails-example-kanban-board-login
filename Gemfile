@@ -22,6 +22,14 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+
+# use devise for managing user account
+gem 'devise'
+
+# the demo app should not really send mail, instead show the mails on the web page
+# gem "letter_opener"
+gem 'letter_opener_web'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

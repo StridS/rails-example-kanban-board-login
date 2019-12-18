@@ -1,13 +1,18 @@
 require 'test_helper'
 
-class BoardsControllerTest < ActionDispatch::IntegrationTest
+class BoardsControllerLoggedInTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
     @board = boards(:one)
+    sign_in users(:one)
+    puts response
   end
 
   test "should get index" do
-    get boards_url
+    get root_url
     assert_response :success
+    assert_select "a", "logout #{users(:one).email}"
   end
 
   test "should get new" do
@@ -45,4 +50,5 @@ class BoardsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to boards_url
   end
+
 end
